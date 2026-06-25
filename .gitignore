@@ -1,0 +1,40 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Photo files — do NOT commit these (they are personal lecture photos)
+*.heic
+*.HEIC
+*.jpg
+*.JPG
+*.jpeg
+*.JPEG
+*.png
+*.PNG
+
+# Output PDF files — do NOT commit these (they are generated output)
+*.pdf
+*.PDF
+
+# Temporary files created by the script
+slides_pdf_*/
+
+# Editor / IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python virtual environments
+venv/
+.venv/
+env/
