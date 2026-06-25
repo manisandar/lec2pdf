@@ -6,6 +6,16 @@ Convert a folder of iPhone lecture photos (HEIC, JPG, JPEG) into a single, clean
 
 ---
 
+## 📸 Before & After
+
+![lec2pdf before and after demo](assets/demo.png)
+
+> **Left** — raw photo taken in class (portrait, with stand, wall, and classroom background)
+> **Right** — result after running `lec2pdf` (slide only, auto-rotated, clean crop)
+
+---
+
+
 ## ✨ Features
 
 | | What it does |

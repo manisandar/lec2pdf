@@ -12,6 +12,7 @@ __pycache__/
 .Trashes
 
 # Photo files — do NOT commit these (they are personal lecture photos)
+# Exception: assets/ folder is allowed (contains demo images for README)
 *.heic
 *.HEIC
 *.jpg
@@ -20,6 +21,9 @@ __pycache__/
 *.JPEG
 *.png
 *.PNG
+!assets/
+!assets/*.jpg
+!assets/*.png
 
 # Output PDF files — do NOT commit these (they are generated output)
 *.pdf
