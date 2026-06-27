@@ -1,4 +1,4 @@
-# 📄 lec2pdf — Lecture Slide Photos → Clean PDF
+# lec2pdf — Lecture Slide Photos → Clean PDF
 
 Convert a folder of iPhone lecture photos (HEIC, JPG, JPEG) into a single, clean, readable PDF — **one slide per page**, with background automatically cropped out.
 
@@ -6,7 +6,7 @@ Convert a folder of iPhone lecture photos (HEIC, JPG, JPEG) into a single, clean
 
 ---
 
-## 📸 Before & After
+## Before & After
 
 ![lec2pdf before and after demo](assets/demo.png)
 
@@ -15,34 +15,32 @@ Convert a folder of iPhone lecture photos (HEIC, JPG, JPEG) into a single, clean
 
 ---
 
+## Features
 
-## ✨ Features
-
-| | What it does |
-|---|---|
-| 🔄 | **Auto-converts** HEIC (iPhone format) to JPEG — no manual conversion needed |
-| 🔃 | **Auto-rotates** images based on EXIF orientation data |
-| ✂️ | **Smart-crops** to just the slide content — removes classroom walls, stands, people |
-| 🖥️ | Handles **projector/screen photos** (dark background, bright slide) |
-| 📄 | Handles **printed paper slide photos** (paper fills the frame) |
-| 📁 | Supports **HEIC, JPG, JPEG** — or mixed folders with all three |
-| 📦 | **Auto-installs** Pillow + numpy on first run — no manual pip needed |
+- **Auto-converts HEIC** (iPhone format) to JPEG — no manual conversion needed.
+- **Robust Auto-rotation** — Sweep-tests all 4 rotations. Selects best orientation using high-confidence OCR word counts (pytesseract) with a smart Sobel gradient fallback.
+- **Smart-crops** to just the slide content using OpenCV perspective warp, removing walls, projection stands, and classroom background.
+- **Handles screen / projector photos** (dark background, bright slide).
+- **Handles printed paper slide photos** (paper fills the frame).
+- **Supports HEIC, JPG, JPEG** — or mixed folders with all three.
+- **Auto-installs Python dependencies** on first run — no manual pip needed.
 
 ---
 
-## 🖥️ Requirements
+## Requirements
 
 | Requirement | Notes |
 |---|---|
 | **macOS** | Required — uses built-in `sips` tool for HEIC conversion |
 | **Python 3** | Already installed on macOS. Check with: `python3 --version` |
-| **Pillow + numpy** | Auto-installed on first run. Or install manually (see below) |
+| **Python Libraries** | Pillow, numpy, opencv-python-headless, and pytesseract (Auto-installed on first run or via requirements.txt) |
+| **Tesseract OCR (Recommended)** | For high-accuracy auto-rotation. Install via Homebrew: `brew install tesseract` |
 
-> ⚠️ **This script is macOS only** because it uses the macOS built-in `sips` command for HEIC conversion. On Windows/Linux, convert HEIC photos to JPG first using any tool, then run the script on the JPG folder.
+> This script is macOS only because it uses the macOS built-in `sips` command for HEIC conversion. On Windows/Linux, convert HEIC photos to JPG first using any tool, then run the script on the JPG folder.
 
 ---
 
-## 🚀 Quick Start (3 steps)
+## Quick Start (3 steps)
 
 ### Step 1 — Download the script
 
@@ -67,7 +65,7 @@ The PDF is saved **inside your photo folder** automatically.
 
 ---
 
-## 📖 Usage
+## Usage
 
 ```
 python3 slides_to_pdf.py <PHOTO_FOLDER> [OUTPUT.pdf]
@@ -75,8 +73,8 @@ python3 slides_to_pdf.py <PHOTO_FOLDER> [OUTPUT.pdf]
 
 | Argument | Required | Description |
 |---|---|---|
-| `PHOTO_FOLDER` | ✅ Yes | Path to the folder containing your lecture photos |
-| `OUTPUT.pdf` | ❌ Optional | Custom output filename. Defaults to `<folder_name>.pdf` inside the photo folder |
+| `PHOTO_FOLDER` |  Yes | Path to the folder containing your lecture photos |
+| `OUTPUT.pdf` |  Optional | Custom output filename. Defaults to `<folder_name>.pdf` inside the photo folder |
 
 ### Examples
 
@@ -110,10 +108,14 @@ python3 slides_to_pdf.py "~/Documents/lectures/week${WEEK}/photos"
 
 ---
 
-## 📦 Manual Installation (if auto-install fails)
+## Manual Installation (if auto-install fails)
 
 ```bash
-pip3 install pillow numpy
+# Install python dependencies
+pip3 install pillow numpy opencv-python-headless pytesseract
+
+# (Highly Recommended) Install tesseract OCR system binary for auto-rotation
+brew install tesseract
 ```
 
 Or with a virtual environment:
@@ -121,11 +123,13 @@ Or with a virtual environment:
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+# Make sure to install tesseract on your machine as well
+brew install tesseract
 ```
 
 ---
 
-## 📸 Photo Tips for Best Results
+## Photo Tips for Best Results
 
 - **Fill the frame** — try to capture mostly the slide, with minimal background
 - **Hold steady** — avoid blur; blurry photos may not crop correctly
@@ -135,7 +139,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🔍 How the Smart Crop Works
+## How the Smart Crop Works
 
 The script automatically detects which type of photo you have:
 
@@ -148,16 +152,16 @@ Both use brightness analysis on a downscaled version of the image for speed, the
 
 ---
 
-## ❓ Troubleshooting
+## Troubleshooting
 
 **`No supported photos found in: ...`**
 → Make sure the folder path is correct.
 → Use quotes around paths that contain spaces:
 ```bash
-# ✅ Correct
+# Correct
 python3 slides_to_pdf.py "~/Desktop/my lecture photos"
 
-# ❌ Wrong
+# Wrong
 python3 slides_to_pdf.py ~/Desktop/my lecture photos
 ```
 
@@ -175,7 +179,7 @@ xcode-select --install
 
 ---
 
-## 📁 What Gets Uploaded to This Repo
+## What Gets Uploaded to This Repo
 
 ```
 lec2pdf/
@@ -185,11 +189,11 @@ lec2pdf/
 └── README.md           ← this file
 ```
 
-> 🔒 The `.gitignore` is configured to **block all photo and PDF files** from being committed, so your lecture photos will never accidentally end up on GitHub.
+>  The `.gitignore` is configured to **block all photo and PDF files** from being committed, so your lecture photos will never accidentally end up on GitHub.
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Found a bug or want to improve the crop detection? Pull requests are welcome!
 
@@ -200,6 +204,6 @@ Found a bug or want to improve the crop detection? Pull requests are welcome!
 
 ---
 
-## 📜 License
+## License
 
 MIT License — free to use, modify, and share.
